@@ -1,0 +1,27 @@
+syntax = "proto3";
+package order;
+option go_package = "orderpb";
+
+import "google/protobuf/timestamp.proto";
+
+service OrderService {
+    rpc PlaceOrder(PlaceOrderRequest) returns (PlaceOrderResponse);
+}
+
+message Order {
+    int64 order_id = 1;
+    string symbol = 2;
+    double volume = 3;
+    string side = 4;
+    string order_type = 5;
+    double limit_price = 6;
+    google.protobuf.Timestamp created_at = 7;
+}
+
+message PlaceOrderRequest{
+    Order order = 1;
+}
+
+message PlaceOrderResponse {
+    Order order = 1;
+}
